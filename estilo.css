@@ -1,0 +1,104 @@
+/* Inclui bordas e preenchimento no tamanho dos elementos. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* 1. Mudar o fundo da página: degradê entre azul escuro e roxo */
+  background: linear-gradient(135deg, #0f172a, #4c1d95);
+  color: #ccc;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin: 20px 0 0;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+}
+
+/* Área que contém o botão central e as opções. */
+.menu {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* Botão central. */
+#alternar {
+  position: absolute;
+  left: 127px;
+  top: 127px;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background: #252525;
+  color: white;
+
+  cursor: pointer;
+  z-index: 2;
+
+  /* 4. Destacar o botão central: adicione uma sombra branca */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+#alternar span {
+  font-size: 32px;
+  transition: transform 0.3s;
+}
+
+/* Gira o sinal de + para formar um X. */
+.menu.aberto #alternar span {
+  transform: rotate(45deg);
+}
+
+/* Estado fechado: opções no centro e invisíveis. */
+#opcoes a {
+  position: absolute;
+  left: 127px;
+  top: 127px;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  border: 2px solid var(--cor);
+  
+  /* 2. Deixar as opções circulares */
+  border-radius: 50%;
+
+  background: #151515;
+  color: var(--cor);
+  box-shadow: 0 0 10px var(--cor);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translate(0, 0) rotate(45deg) scale(0);
+
+  /* 5. Deixar a animação mais lenta: alterado de 0.4s para 0.8s */
+  transition:
+    transform 0.8s ease var(--atraso),
+    opacity 0.8s ease var(--atraso),
+    background 0.2s,
