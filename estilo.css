@@ -12,8 +12,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  /* 1. Mudar o fundo da página: degradê entre azul escuro e roxo */
-  background: linear-gradient(135deg, #0f172a, #4c1d95);
+  background: linear-gradient(135deg, #0b112c, #2a0845);
   color: #ccc;
   font-family: Arial, sans-serif;
 }
@@ -25,14 +24,12 @@ h1 {
   text-align: center;
 }
 
-/* Área que contém o botão central e as opções. */
 .menu {
   position: relative;
   width: 300px;
   height: 300px;
 }
 
-/* Botão central. */
 #alternar {
   position: absolute;
   left: 127px;
@@ -54,8 +51,8 @@ h1 {
 
   cursor: pointer;
   z-index: 2;
+  
 
-  /* 4. Destacar o botão central: adicione uma sombra branca */
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
@@ -64,12 +61,10 @@ h1 {
   transition: transform 0.3s;
 }
 
-/* Gira o sinal de + para formar um X. */
 .menu.aberto #alternar span {
   transform: rotate(45deg);
 }
 
-/* Estado fechado: opções no centro e invisíveis. */
 #opcoes a {
   position: absolute;
   left: 127px;
@@ -85,7 +80,7 @@ h1 {
   text-decoration: none;
   border: 2px solid var(--cor);
   
-  /* 2. Deixar as opções circulares */
+
   border-radius: 50%;
 
   background: #151515;
@@ -97,8 +92,79 @@ h1 {
 
   transform: translate(0, 0) rotate(45deg) scale(0);
 
-  /* 5. Deixar a animação mais lenta: alterado de 0.4s para 0.8s */
   transition:
     transform 0.8s ease var(--atraso),
     opacity 0.8s ease var(--atraso),
     background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+#opcoes a:nth-child(1) { --atraso: 1.05s; }
+#opcoes a:nth-child(2) { --atraso: 0.90s; }
+#opcoes a:nth-child(3) { --atraso: 0.75s; }
+#opcoes a:nth-child(4) { --atraso: 0.60s; }
+#opcoes a:nth-child(5) { --atraso: 0.45s; }
+#opcoes a:nth-child(6) { --atraso: 0.30s; }
+#opcoes a:nth-child(7) { --atraso: 0.15s; }
+#opcoes a:nth-child(8) { --atraso: 0s; }
+
+.menu.aberto #opcoes a {
+  opacity: 1;
+  pointer-events: auto;
+
+  transform:
+    translate(var(--x), var(--y))
+    rotate(45deg)
+    scale(1);
+}
+
+.menu.aberto #opcoes a:nth-child(1) { --atraso: 0s; }
+.menu.aberto #opcoes a:nth-child(2) { --atraso: 0.15s; }
+.menu.aberto #opcoes a:nth-child(3) { --atraso: 0.30s; }
+.menu.aberto #opcoes a:nth-child(4) { --atraso: 0.45s; }
+.menu.aberto #opcoes a:nth-child(5) { --atraso: 0.60s; }
+.menu.aberto #opcoes a:nth-child(6) { --atraso: 0.75s; }
+.menu.aberto #opcoes a:nth-child(7) { --atraso: 0.90s; }
+.menu.aberto #opcoes a:nth-child(8) { --atraso: 1.05s; }
+
+#opcoes a span {
+
+  font-size: 30px;
+  transform: rotate(-45deg);
+}
+
+#opcoes a:hover,
+#opcoes a:focus-visible {
+  background: var(--cor);
+  color: #151515;
+  box-shadow: 0 0 25px var(--cor);
+}
+
+#alternar:focus-visible,
+#opcoes a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+
+#mensagem {
+  max-width: 400px;
+  padding: 0 15px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+footer {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #alternar span,
+  #opcoes a {
+    transition: none;
+  }
+}
+
